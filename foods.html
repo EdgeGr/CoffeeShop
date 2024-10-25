@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+<title>Foods</title>
+  <style>
+    body {
+      background-color: #FED8B1;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #6F4E37;
+      padding: 20px;
+      z-index: 1000;
+      display: flex;
+	  align-items: center;
+    }
+
+    #navbar button {
+      color: white;
+      padding: 10px 15px;
+      background-color: #ECB176;
+      border: none;
+      cursor: pointer;
+      margin-right: 10px;
+	  width: 110px;
+    }
+
+    #navbar button:hover {
+      background-color: #FED8B1;
+    }
+
+    #foods {
+      background-color: #FED8B1;
+      padding: 20px;
+      margin-top: 60px; 
+      min-height: 80vh;
+    }
+	
+    #menu-content{
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px; 
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+	
+    #menu-content a{
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+	
+    #menu:hover + #menu-content{
+      display:block;
+    }
+	
+	.menu-container:hover #menu-content{
+	  display: block;
+	}
+	
+    .menu-container {
+      position: relative;
+      margin-right: auto;
+    }
+	
+	.center-buttons {
+      display: flex;
+      justify-content: center; 
+      flex: 1; 
+    }
+
+    .food-item {
+	  display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      padding: 10px;
+      background-color: #ECB176;
+      border-radius: 10px;
+    }
+
+    .food-item img {
+      width: 300px;
+      height: auto;
+      border-radius: 10px;
+      margin-left: 20px;
+    }
+
+    .food-item div {
+      flex: 1;
+      text-align: center;
+	  margin-left: 300px;
+    }
+	
+	.food-price{
+	  font-weight: bold;
+	  font-size: 20px;
+	  margin-top: 10px;
+	  margin-right: 300px;
+	  padding: 5px;
+	  border: 2px solid #333;
+	  width: fit-content;
+	  display: inline-block;
+	}
+	
+	h2 {
+      text-align: center; 
+      font-family: 'Dancing Script', cursive; 
+      font-size: 3em; 
+      color: #6F4E37; 
+      margin: 40px 0; 
+    }
+  </style>
+</head>
+<body>
+
+  <div id="navbar">
+  <div class="menu-container">
+  <button id="menu">Menu</button>
+   <div id="menu-content">
+    <a href="index.html">Main menu</a>
+	<a href="drinks.html">Drinks</a>
+	<a href="about_us.html">About us</a>
+	<a href="order.html">Order online</a>
+   </div>
+  </div> 
+   
+   <div class="center-buttons">
+    <button onclick="scrollToSection('main-dishes')">Main Dishes</button>
+    <button onclick="scrollToSection('desserts')">Desserts</button>
+    <button onclick="scrollToSection('snacks')">Snacks</button>
+    <button onclick="scrollToSection('breakfast')">Breakfast</button>
+    <button onclick="scrollToSection('salads')">Salads</button>
+   </div>
+  </div>
+
+  <div id="foods"></div>
+
+  <script>
+    const menu = {
+      "Main Dishes": [
+        { name: "Grilled Chicken", description: "Juicy grilled chicken served with vegetables.", image: "pasta.jpg", price:"13.00€"	},
+        { name: "Beef Steak", description: "Tender beef steak with mashed potatoes.", image: "pasta.jpg", price:"20.00€" },
+        { name: "Pasta Carbonara", description: "Classic Italian pasta with creamy sauce.", image: "pasta.jpg", price:"9.00€" },
+        { name: "Salmon", description: "Grilled salmon with lemon butter.", image: "pasta.jpg", price:"13.00€" }
+      ],
+      "Desserts": [
+        { name: "Chocolate Cake", description: "Rich chocolate cake with dark chocolate icing.", image: "pasta.jpg", price:"6.50€" },
+        { name: "Cheesecake", description: "Creamy cheesecake with a graham cracker crust.", image: "pasta.jpg", price:"7.99€" },
+        { name: "Apple Pie", description: "Warm apple pie with cinnamon.", image: "pasta.jpg", price:"5.50€"}
+      ],
+      "Snacks": [
+        { name: "Nachos", description: "Crispy nachos with cheese and salsa.", image: "pasta.jpg", price:"6.00€" },
+        { name: "French Fries", description: "Golden fries served with ketchup.", image: "pasta.jpg", price:"3.00€" }
+      ],
+      "Breakfast": [
+        { name: "Pancakes", description: "Fluffy pancakes with maple syrup.", image: "pasta.jpg", price:"8.99€" },
+        { name: "Omelette", description: "Omelette with cheese and mushrooms.", image: "pasta.jpg", price:"7.50€"}
+      ],
+      "Salads": [
+        { name: "Caesar Salad", description: "Crispy romaine with Caesar dressing.", image: "pasta.jpg", price:"7.00€" },
+        { name: "Greek Salad", description: "Fresh veggies with feta cheese.", image: "pasta.jpg",  price:"9.00€"}
+      ]
+    };
+
+    const createMenu = (category, items) => {
+      const section = document.createElement('div');
+      const sectionTitle = document.createElement('h2');
+      sectionTitle.id = category.toLowerCase().replace(" ", "-");
+      sectionTitle.textContent = category;
+      section.appendChild(sectionTitle);
+
+      items.forEach(item => {
+        const foodItem = document.createElement('div');
+        foodItem.classList.add('food-item');
+
+        const foodText = document.createElement('div');
+        const foodName = document.createElement('h3');
+        foodName.textContent = item.name;
+        const foodDesc = document.createElement('p');
+        foodDesc.textContent = item.description;
+		const foodprice= document.createElement('div');
+		foodprice.classList.add('food-price');
+		foodprice.textContent= item.price;
+
+        foodText.appendChild(foodName);
+        foodText.appendChild(foodDesc);
+		foodText.appendChild(foodprice);
+		
+        const foodImg = document.createElement('img');
+        foodImg.src = item.image;
+        foodImg.alt = `pic of ${item.name}`;
+        foodItem.appendChild(foodText);
+        foodItem.appendChild(foodImg);
+        section.appendChild(foodItem);
+      });
+      document.getElementById('foods').appendChild(section);
+    };
+
+    for (const category in menu) {
+      createMenu(category, menu[category]);
+    }
+
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

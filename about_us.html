@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+<title>About</title>
+<style>
+ body{
+      background-color: #ECB176;
+	  margin: 0;
+      padding-top: 80px;
+    }
+ 
+ h1{
+      color: #6F4E37;
+	  text-align: center;
+    }
+
+ .cozy-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3em;
+      color: #6F4E37;
+      text-align: center;
+    }	
+	
+ p{
+      color: #6F4E37;
+	  font-family: 'Open Sans', sans-serif;
+      font-size: 1.2em;
+      line-height: 1.6;
+	  padding: 0 20px;
+ }	
+ 
+ #navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #6F4E37;
+      padding: 20px;
+      z-index: 1000;
+      display: flex;
+	  align-items: center;
+    }
+
+    #navbar button {
+      color: white;
+      padding: 10px 15px;
+      background-color: #ECB176;
+      border: none;
+      cursor: pointer;
+      margin-right: 10px;
+	  width: 110px;
+    }
+
+    #navbar button:hover {
+      background-color: #FED8B1;
+    }
+	
+	#menu-content{
+      display: none;
+	  position: absolute;
+	  background-color: #f9f9f9;
+	  min-width: 160px; 
+	  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	  z-index: 1;
+	}
+	
+	#menu-content a{
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+	
+	#menu:hover + #menu-content{
+	  display:block;
+	}
+	
+    .menu-container:hover #menu-content{
+	  display: block;
+	}
+	
+    .menu-container {
+      position: relative;
+      margin-right: auto;
+    }
+ </style>
+</head>
+<body>
+  <div id="navbar">
+  <div class="menu-container">
+  <button id="menu">Menu</button>
+   <div id="menu-content">
+    <a href="index.html">Main menu</a>
+	<a href="foods.html">Foods</a>
+	<a href="drinks.html">Drinks</a>
+    <a href="order.html">Order online</a>
+   </div>
+  </div> 
+  </div>
+<h1 class="cozy-title">Welcome to Cozy Cup!</h1>
+<p>At <i>Cozy Cup</i>, we believe that every cup of coffee tells a story. Established in 2014 , our coffee shop is a warm and 
+ inviting space where you can enjoy expertly brewed coffee, delightful pastries, and a selection of delicious meals.
+</p><br>
+
+<p>Our Passion for Coffee We are dedicated to providing the finest coffee experience. We source our beans from sustainable farms,
+ ensuring that every sip is rich, flavorful, and ethically produced. Our baristas are passionate about their craft, and they take pride in creating the perfect cup just for you.</p><br>
+ 
+ <p>More Than Just Coffee While coffee is at the heart of what we do, we also offer a carefully curated menu of light meals and snacks. 
+ From freshly made sandwiches and salads to delectable pastries, there's something for everyone to enjoy. 
+ Whether you're looking for a quick bite or a leisurely brunch, our menu is designed to complement your coffee experience.</p><br>
+ 
+ <p>A Cozy Atmosphere Our coffee shop is more than just a place to grab a drink; it’s a community hub where friends meet, ideas flourish, and memories are made. 
+ With cozy seating and a welcoming ambiance, we invite you to relax, unwind, and savor the moment.</p><br>
+ 
+ <p>Join Us! Whether you’re here to grab your morning coffee, catch up with friends, or enjoy a delicious meal, we can’t wait to serve you. 
+ Thank you for choosing <i>Cozy Cup</i> as your favorite local spot.</p>
+</body>
+</html>

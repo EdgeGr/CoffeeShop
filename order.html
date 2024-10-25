@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+<title>Order</title>
+    <style>
+	html{
+	  scroll-padding-top: 100px;
+	}
+    body {
+      background-color: #FED8B1;
+      margin: 0;
+      padding-top: 80px;
+      font-family: Arial, sans-serif;
+    }
+
+    h1, h2 {
+      color: #6F4E37;
+	  font-family: 'Dancing Script', cursive; 
+	  font-size: 3em;
+    }
+
+    #navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #6F4E37;
+      padding: 20px 40px 20px 20px;
+      z-index: 1000;
+      display: flex;
+	  align-items: center;
+	  justify-content: space-between;
+    }
+
+    #navbar button {
+      color: white;
+      padding: 10px 15px;
+      background-color: #ECB176;
+      border: none;
+      cursor: pointer;
+      margin-right: 10px;
+	  width: 110px;
+    }
+
+    #navbar button:hover {
+      background-color: #FED8B1;
+    }
+	
+	#price{
+	  height: 200px;
+	  width: 300px;
+	  position: fixed;
+	  top: 100px;
+	  right: 50px;
+	  background-color: #ECB176;
+	  padding: 15px;
+	  border-radius: 10px;
+	  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+	  font-size: 2em;
+	  display: flex;
+	  flex-direction: column;
+	  text-align: center;
+	  justify-content: center;
+	  align-items: center;
+	}
+	
+	#order-button{
+	  background-color: #A67B5B;
+	  border: none;
+	  padding: 10px 20px;
+	  color: white;
+	  font-weight: bold;
+	  cursor: pointer;
+	  border-radius: 5px;
+	}
+	
+	#order-button:hover{
+	  background-color: #FED8B1;
+	}
+
+    #menu-section {
+      padding: 20px;
+    }
+
+    .menu-category {
+      margin-bottom: 30px;
+    }
+
+    #menu-content{
+      display: none;
+	  position: absolute;
+	  background-color: #f9f9f9;
+	  min-width: 160px; 
+	  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	  z-index: 1;
+	}
+	
+	#menu-content a{
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+	
+	#menu:hover + #menu-content{
+	  display:block;
+	}
+	
+    .menu-container:hover #menu-content{
+	  display: block;
+	}
+	
+    .menu-container {
+      position: relative;
+      margin-right: auto;
+    }
+    
+	.menu-category h2 {
+      color: #6F4E37;
+      margin-bottom: 15px;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ECB176;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+	  width: 90%;
+	  max-width: 700px;
+    }
+
+    .menu-item .item-text {
+      width: 50%;
+    }
+
+    .menu-item .item-controls {
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-item button {
+      padding: 5px 10px;
+      margin: 0 5px;
+      background-color: #A67B5B;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .menu-item button:hover {
+      background-color: #FED8B1;
+    }
+
+    menu-item input {
+      width: 40px;
+      text-align: center;
+    }
+		
+    .menu-item input[type="number"] {
+	  width: 40px;
+	  text-align: center;
+      margin: 0 5px;
+      padding: 2px;
+      box-sizing: border-box;
+    }
+	
+    input[type="number"] {
+      -moz-appearance: textfield; 
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .total-price {
+      font-weight: bold;
+    }
+	
+    .center-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start; 
+      margin: 0;
+      padding-left: 50px;
+      padding-right: 100px; 
+    }
+
+
+    #disclaimer {
+      margin-top: 20px;
+      font-style: italic;
+      color: red;
+    }
+	
+    </style>
+</head>
+<body>
+
+    <div id="navbar">
+  <div class="menu-container">
+  <button id="menu">Menu</button>
+   <div id="menu-content">
+    <a href="index.html">Main menu</a>
+	<a href="foods.html">Foods</a>
+	<a href="about_us.html">About us</a>
+	<a href="drinks.html">Drinks</a>
+   </div>
+  </div> 
+   
+   <div class="center-buttons">
+    <button onclick="scrollToSection('non-alcoholic')">Non-Alcoholic</button>
+    <button onclick="scrollToSection('cocktails')">Cocktails</button>
+    <button onclick="scrollToSection('beer')">Beer</button>
+    <button onclick="scrollToSection('wine')">Wine</button>
+    <button onclick="scrollToSection('juices')">Juices</button>
+	<button onclick="scrollToSection('coffees')">Coffees</button>
+	<button onclick="scrollToSection('main-dishes')">Main Dishes</button>
+    <button onclick="scrollToSection('desserts')">Desserts</button>
+    <button onclick="scrollToSection('snacks')">Snacks</button>
+    <button onclick="scrollToSection('breakfast')">Breakfast</button>
+    <button onclick="scrollToSection('salads')">Salads</button>
+   </div>
+  </div>
+
+    <div id="disclaimer">
+      <p>Note: This is a mock site. Online ordering and payments are not functional.</p>
+    </div>
+	
+    <div id="menu-section">
+      <div id="drinks-section"></div>
+      <div id="foods-section"></div>
+    </div>
+	
+	<div id="price">
+	  <p1>Price: <span id="total-price">0.00€</span><p1><br>
+	  <button id="order-button">Order</button>
+    </div>	
+
+    <script>
+	let total= 0;
+	
+	    const updatePrice = () => {
+	     document.getElementById('total-price').innerText= total.toFixed(2)+'€';
+	}
+        const menuDrinks = {
+            "Non-Alcoholic": [
+        { name: "Coca-Cola", description: "Refreshing cola beverage.", price:"2.50€" },
+        { name: "Lemonade", description: "Fresh homemade lemonade.", price:"3.00€" },
+        { name: "Iced Tea", description: "Chilled tea with a hint of lemon.",  price:"2.50€" }
+      ],
+      "Cocktails": [
+        { name: "Mojito", description: "Classic Cuban cocktail with mint and lime.", price:"7.50€" },
+        { name: "Margarita", description: "Tequila, lime, and a salted rim.", price:"8.00€" },
+        { name: "Pina Colada", description: "Creamy cocktail with pineapple and coconut.",  price:"8.50€" }
+      ],
+      "Beer": [
+        { name: "Heineken", description: "Crisp and refreshing lager.", price:"4.00€" },
+        { name: "Guinness", description: "Smooth Irish stout.", price:"5.00€" },
+        { name: "Budweiser", description: "American-style pale lager.", image: "cola.jpg", price:"3.50€" }
+      ],
+      "Wine": [
+        { name: "Chardonnay", description: "Dry white wine with fruity notes.",  price:"6.50€ per glass" },
+        { name: "Merlot", description: "Smooth red wine with a soft finish.", price:"7.00€ per glass" },
+        { name: "Rose", description: "Light and refreshing with berry flavors.",  price:"6.00€ per glass" }
+      ],
+	  "Juices": [
+        { name: "Orange Juice", description: "Freshly squeezed orange juice.", price:"4.00€" },
+        { name: "Apple Juice", description: "Crisp and sweet apple juice.", price:"3.50€" },
+        { name: "Mango Juice", description: "Tropical mango juice with a hint of lime.", price:"4.50€" },
+        { name: "Pineapple Juice", description: "Sweet and tangy pineapple juice.", price:"4.00€" }
+      ],
+      "Coffees": [
+        { name: "Espresso", description: "Strong, rich espresso shot.", price:"2.00€" },
+        { name: "Cappuccino", description: "Espresso with steamed milk and foam.", price:"3.50€" },
+        { name: "Latte", description: "Smooth espresso with steamed milk.", price:"3.50€" },
+        { name: "Americano", description: "Diluted espresso with hot water.",  price:"2.50€" },
+        { name: "Iced Coffee", description: "Chilled coffee served over ice.", price:"3.00€" }
+      ]
+    };
+
+        const menuFoods = {
+            "Main Dishes": [
+        { name: "Grilled Chicken", description: "Juicy grilled chicken served with vegetables.", price:"13.00€"	},
+        { name: "Beef Steak", description: "Tender beef steak with mashed potatoes.",price:"20.00€" },
+        { name: "Pasta Carbonara", description: "Classic Italian pasta with creamy sauce.", price:"9.00€" },
+        { name: "Salmon", description: "Grilled salmon with lemon butter.", price:"13.00€" }
+      ],
+      "Desserts": [
+        { name: "Chocolate Cake", description: "Rich chocolate cake with dark chocolate icing.", price:"6.50€" },
+        { name: "Cheesecake", description: "Creamy cheesecake with a graham cracker crust.", price:"7.99€" },
+        { name: "Apple Pie", description: "Warm apple pie with cinnamon.",  price:"5.50€"}
+      ],
+      "Snacks": [
+        { name: "Nachos", description: "Crispy nachos with cheese and salsa.",  price:"6.00€" },
+        { name: "French Fries", description: "Golden fries served with ketchup.", price:"3.00€" }
+      ],
+      "Breakfast": [
+        { name: "Pancakes", description: "Fluffy pancakes with maple syrup.",  price:"8.99€" },
+        { name: "Omelette", description: "Omelette with cheese and mushrooms.",  price:"7.50€"}
+      ],
+      "Salads": [
+        { name: "Caesar Salad", description: "Crispy romaine with Caesar dressing.", price:"7.00€" },
+        { name: "Greek Salad", description: "Fresh veggies with feta cheese.",  price:"9.00€"}
+      ]
+    };
+
+ const createMenu = (category, items, sectionId) => {
+    const section = document.getElementById(sectionId);
+    const sectionDiv = document.createElement('div');
+    sectionDiv.classList.add('menu-category');
+	sectionDiv.setAttribute('id', category.toLowerCase().replace(/ /g, '-'));
+    const sectionTitle = document.createElement('h2');
+    sectionTitle.textContent = category;
+    sectionDiv.appendChild(sectionTitle);
+    
+    items.forEach(item => {
+        const menuItem = document.createElement('div');
+        menuItem.classList.add('menu-item');
+        const itemText = document.createElement('div');
+        itemText.classList.add('item-text');
+        const itemName = document.createElement('h3');
+        itemName.textContent = item.name;
+        const itemDesc = document.createElement('p');
+        itemDesc.textContent = item.description;
+        const itemPrice = document.createElement('p');
+        itemPrice.textContent = `Price: ${item.price}`;
+        itemText.appendChild(itemName);
+        itemText.appendChild(itemDesc);
+        itemText.appendChild(itemPrice);
+        const itemControls = document.createElement('div');
+        itemControls.classList.add('item-controls');      
+        const minusBtn = document.createElement('button');
+        minusBtn.textContent = '-';
+        const qtyInput = document.createElement('input');
+        qtyInput.type = 'number';
+        qtyInput.value = 0;
+        qtyInput.min = 0;
+        const plusBtn = document.createElement('button');
+        plusBtn.textContent = '+';        
+        itemControls.appendChild(minusBtn);
+        itemControls.appendChild(qtyInput);
+        itemControls.appendChild(plusBtn);        
+        menuItem.appendChild(itemText);
+        menuItem.appendChild(itemControls);        
+        sectionDiv.appendChild(menuItem);  
+		const ItemValue= parseFloat(item.price.replace('€','').replace('per glass', '' ));
+        plusBtn.addEventListener('click', () => {
+            qtyInput.value = parseInt(qtyInput.value) + 1;
+			total += ItemValue;
+			updatePrice();
+        });        
+        minusBtn.addEventListener('click', () => {
+            if (qtyInput.value > 0) {
+                qtyInput.value = parseInt(qtyInput.value) - 1;
+				total -= ItemValue;
+				updatePrice();
+            }
+        });
+    });
+    section.appendChild(sectionDiv);
+};
+
+ for (const category in menuDrinks) {
+    createMenu(category, menuDrinks[category], 'drinks-section');
+ }
+
+ for (const category in menuFoods) {
+    createMenu(category, menuFoods[category], 'foods-section');
+ };
+
+ function scrollToSection(sectionId) {
+   const section = document.getElementById(sectionId);
+   section.scrollIntoView({ behavior: 'smooth' });
+ }
+
+    </script>
+
+</body>
+</html>
