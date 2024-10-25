@@ -1,229 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-<title>Drinks</title>
-  <style>
-    body {
-      background-color: #FED8B1;
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <style>
+	
+		html{
+	        scroll-padding-top: 100px;
+	    }
+		
+        body {
+            background-color: #FED8B1;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
-    #navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: #6F4E37;
-      padding: 20px;
-      z-index: 1000;
-      display: flex;
-	  align-items: center;
-    }
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #6F4E37;
+            padding: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
 
-    #navbar button {
-      color: white;
-      padding: 10px 15px;
-      background-color: #ECB176;
-      border: none;
-      cursor: pointer;
-      margin-right: 10px;
-	  width: 110px;
-    }
+        #navbar button {
+            color: white;
+            padding: 10px 15px;
+            background-color: #ECB176;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            width: 110px;
+        }
 
-    #navbar button:hover {
-      background-color: #FED8B1;
-    }
+        #navbar button:hover {
+            background-color: #FED8B1;
+        }
 
-    #drinks {
-      background-color: #FED8B1;
-      padding: 20px;
-      margin-top: 60px; 
-      min-height: 80vh;
-    }
-	
-	#menu-content{
-      display: none;
-	  position: absolute;
-	  background-color: #f9f9f9;
-	  min-width: 160px; 
-	  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	  z-index: 1;
-	}
-	
-	#menu-content a{
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-	
-	#menu:hover + #menu-content{
-	  display:block;
-	}
-	
-    .menu-container:hover #menu-content{
-	  display: block;
-	}
-	
-    .menu-container {
-      position: relative;
-      margin-right: auto;
-    }
-	
-	.center-buttons {
-      display: flex;
-      justify-content: center; 
-      flex: 1; 
-    }
+        #drinks {
+            background-color: #FED8B1;
+            padding: 20px;
+            margin-top: 60px;
+            min-height: 80vh;
+        }
 
-    .drink-item {
-      align-items: center;
-      margin-bottom: 30px;
-      padding: 10px;
-      background-color: #ECB176;
-      border-radius: 10px;
-      display: flex;
-    }
+        #menu-content {
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            opacity: 0; 
+            visibility: hidden; 
+            max-height: 0;
+            overflow: hidden; 
+            transition: opacity 0.3s ease, max-height 0.3s ease; 
+        }
 
-    .drink-item img {
-      width: 300px;
-      height: auto;
-      border-radius: 10px;
-      margin-left: 20px;
-    }
+        .menu-container:hover #menu-content {
+            visibility: visible; 
+            max-height: 200px; 
+            opacity: 1; 
+        }
 
-    .drink-item div {
-      flex: 1;
-      text-align: center;
-	  margin-left: 300px;
-    }
-	
-	.drink-price{
-	  font-weight: bold;
-	  font-size: 20px;
-	  margin-top: 10px;
-	  padding: 5px;
-	  border: 2px solid #333;
-	  width: fit-content;
-	  display: inline-block;
-	  margin-right: 300px;
-	}
-	
-	h2 {
-      text-align: center; 
-      font-family: 'Dancing Script', cursive; 
-      font-size: 3em; 
-      color: #6F4E37; 
-      margin: 40px 0; 
-    }	
-  </style>
+        #menu-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .menu-container {
+            position: relative;
+            margin-right: auto;
+        }
+
+        .center-buttons {
+            display: flex;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .drink-item {
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 10px;
+            background-color: #ECB176;
+            border-radius: 10px;
+            display: flex;
+        }
+
+        .drink-item img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            margin-left: 20px;
+        }
+
+        .drink-item div {
+            flex: 1;
+            text-align: center;
+            margin-left: 300px;
+        }
+
+        .drink-price {
+            font-weight: bold;
+            font-size: 20px;
+            margin-top: 10px;
+            padding: 5px;
+            border: 2px solid #333;
+            width: fit-content;
+            display: inline-block;
+            margin-right: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3em;
+            color: #6F4E37;
+            margin: 40px 0;
+        }
+    </style>
 </head>
 <body>
 
-  <div id="navbar">
-  <div class="menu-container">
-  <button id="menu">Menu</button>
-   <div id="menu-content">
-    <a href="index.html">Main menu</a>
-	<a href="foods.html">Foods</a>
-	<a href="about_us.html">About us</a>
-	<a href="order.html">Order online</a>
-   </div>
-  </div> 
-   
-   <div class="center-buttons">
-    <button onclick="scrollToSection('non-alcoholic')">Non-Alcoholic</button>
-    <button onclick="scrollToSection('cocktails')">Cocktails</button>
-    <button onclick="scrollToSection('beer')">Beer</button>
-    <button onclick="scrollToSection('wine')">Wine</button>
-    <button onclick="scrollToSection('juices')">Juices</button>
-	<button onclick="scrollToSection('coffees')">Coffees</button>
-   </div>
-  </div>
+<div id="navbar">
+    <div class="menu-container">
+        <button id="menu">Menu</button>
+        <div id="menu-content">
+            <a href="index.html">Main menu</a>
+            <a href="foods.html">Foods</a>
+            <a href="about_us.html">About us</a>
+            <a href="order.html">Order online</a>
+        </div>
+    </div>
 
-  <div id="drinks"></div>
+    <div class="center-buttons">
+        <button onclick="scrollToSection('non-alcoholic')">Non-Alcoholic</button>
+        <button onclick="scrollToSection('cocktails')">Cocktails</button>
+        <button onclick="scrollToSection('beer')">Beer</button>
+        <button onclick="scrollToSection('wine')">Wine</button>
+        <button onclick="scrollToSection('juices')">Juices</button>
+        <button onclick="scrollToSection('coffees')">Coffees</button>
+    </div>
+</div>
 
-  <script>
-        const menu = {
-      "Non-Alcoholic": [
-        { name: "Coca-Cola", description: "Refreshing cola beverage.", image: "cola.jpg", price:"2.50€" },
-        { name: "Lemonade", description: "Fresh homemade lemonade.", image: "cola.jpg", price:"3.00€" },
-        { name: "Iced Tea", description: "Chilled tea with a hint of lemon.", image: "cola.jpg", price:"2.50€" }
-      ],
-      "Cocktails": [
-        { name: "Mojito", description: "Classic Cuban cocktail with mint and lime.", image: "cola.jpg", price:"7.50€" },
-        { name: "Margarita", description: "Tequila, lime, and a salted rim.", image: "cola.jpg", price:"8.00€" },
-        { name: "Pina Colada", description: "Creamy cocktail with pineapple and coconut.", image: "cola.jpg", price:"8.50€" }
-      ],
-      "Beer": [
-        { name: "Heineken", description: "Crisp and refreshing lager.", image: "cola.jpg", price:"4.00€" },
-        { name: "Guinness", description: "Smooth Irish stout.", image: "cola.jpg", price:"5.00€" },
-        { name: "Budweiser", description: "American-style pale lager.", image: "cola.jpg", price:"3.50€" }
-      ],
-      "Wine": [
-        { name: "Chardonnay", description: "Dry white wine with fruity notes.", image: "cola.jpg", price:"6.50€ per glass" },
-        { name: "Merlot", description: "Smooth red wine with a soft finish.", image: "cola.jpg", price:"7.00€ per glass" },
-        { name: "Rose", description: "Light and refreshing with berry flavors.", image: "cola.jpg", price:"6.00€ per glass" }
-      ],
-	  "Juices": [
-        { name: "Orange Juice", description: "Freshly squeezed orange juice.", image: "cola.jpg", price:"4.00€" },
-        { name: "Apple Juice", description: "Crisp and sweet apple juice.", image: "cola.jpg", price:"3.50€" },
-        { name: "Mango Juice", description: "Tropical mango juice with a hint of lime.", image: "cola.jpg", price:"4.50€" },
-        { name: "Pineapple Juice", description: "Sweet and tangy pineapple juice.", image: "cola.jpg", price:"4.00€" }
-      ],
-      "Coffees": [
-        { name: "Espresso", description: "Strong, rich espresso shot.", image: "cola.jpg", price:"2.00€" },
-        { name: "Cappuccino", description: "Espresso with steamed milk and foam.", image: "cola.jpg", price:"3.50€" },
-        { name: "Latte", description: "Smooth espresso with steamed milk.", image: "cola.jpg", price:"3.50€" },
-        { name: "Americano", description: "Diluted espresso with hot water.", image: "cola.jpg", price:"2.50€" },
-        { name: "Iced Coffee", description: "Chilled coffee served over ice.", image: "cola.jpg", price:"3.00€" }
-      ]
+<div id="drinks"></div>
+
+<script>
+    const menu = {
+        "Non-Alcoholic": [
+            { name: "Coca-Cola", description: "Refreshing cola beverage.", image: "cola.jpg", price: "2.50€" },
+            { name: "Lemonade", description: "Fresh homemade lemonade.", image: "cola.jpg", price: "3.00€" },
+            { name: "Iced Tea", description: "Chilled tea with a hint of lemon.", image: "cola.jpg", price: "2.50€" }
+        ],
+        "Cocktails": [
+            { name: "Mojito", description: "Classic Cuban cocktail with mint and lime.", image: "cola.jpg", price: "7.50€" },
+            { name: "Margarita", description: "Tequila, lime, and a salted rim.", image: "cola.jpg", price: "8.00€" },
+            { name: "Pina Colada", description: "Creamy cocktail with pineapple and coconut.", image: "cola.jpg", price: "8.50€" }
+        ],
+        "Beer": [
+            { name: "Heineken", description: "Crisp and refreshing lager.", image: "cola.jpg", price: "4.00€" },
+            { name: "Guinness", description: "Smooth Irish stout.", image: "cola.jpg", price: "5.00€" },
+            { name: "Budweiser", description: "American-style pale lager.", image: "cola.jpg", price: "3.50€" }
+        ],
+        "Wine": [
+            { name: "Chardonnay", description: "Dry white wine with fruity notes.", image: "cola.jpg", price: "6.50€ per glass" },
+            { name: "Merlot", description: "Smooth red wine with a soft finish.", image: "cola.jpg", price: "7.00€ per glass" },
+            { name: "Rose", description: "Light and refreshing with berry flavors.", image: "cola.jpg", price: "6.00€ per glass" }
+        ],
+        "Juices": [
+            { name: "Orange Juice", description: "Freshly squeezed orange juice.", image: "cola.jpg", price: "4.00€" },
+            { name: "Apple Juice", description: "Crisp and sweet apple juice.", image: "cola.jpg", price: "3.50€" },
+            { name: "Mango Juice", description: "Tropical mango juice with a hint of lime.", image: "cola.jpg", price: "4.50€" },
+            { name: "Pineapple Juice", description: "Sweet and tangy pineapple juice.", image: "cola.jpg", price: "4.00€" }
+        ],
+        "Coffees": [
+            { name: "Espresso", description: "Strong, rich espresso shot.", image: "cola.jpg", price: "2.00€" },
+            { name: "Cappuccino", description: "Espresso with steamed milk and foam.", image: "cola.jpg", price: "3.50€" },
+            { name: "Latte", description: "Smooth espresso with steamed milk.", image: "cola.jpg", price: "3.50€" },
+            { name: "Americano", description: "Diluted espresso with hot water.", image: "cola.jpg", price: "2.50€" },
+            { name: "Iced Coffee", description: "Chilled coffee served over ice.", image: "cola.jpg", price: "3.00€" }
+        ]
     };
 
     const createMenu = (category, items) => {
-      const section = document.createElement('div');
-      const sectionTitle = document.createElement('h2');
-      sectionTitle.id = category.toLowerCase().replace(" ", "-");
-      sectionTitle.textContent = category;
-      section.appendChild(sectionTitle);
+        const section = document.createElement('div');
+        const sectionTitle = document.createElement('h2');
+        sectionTitle.id = category.toLowerCase().replace(" ", "-");
+        sectionTitle.textContent = category;
+        section.appendChild(sectionTitle);
 
-      items.forEach(item => {
-        const foodItem = document.createElement('div');
-        foodItem.classList.add('drink-item');
+        items.forEach(item => {
+            const foodItem = document.createElement('div');
+            foodItem.classList.add('drink-item');
 
-        const foodText = document.createElement('div');
-        const foodName = document.createElement('h3');
-        foodName.textContent = item.name;
-        const foodDesc = document.createElement('p');
-        foodDesc.textContent = item.description;
-		const foodprice= document.createElement('div');
-		foodprice.classList.add('drink-price');
-		foodprice.textContent= item.price;
+            const foodText = document.createElement('div');
+            const foodName = document.createElement('h3');
+            foodName.textContent = item.name;
+            const foodDesc = document.createElement('p');
+            foodDesc.textContent = item.description;
+            const foodprice = document.createElement('div');
+            foodprice.classList.add('drink-price');
+            foodprice.textContent = item.price;
 
-        foodText.appendChild(foodName);
-        foodText.appendChild(foodDesc);
-		foodText.appendChild(foodprice);
-		
-        const foodImg = document.createElement('img');
-        foodImg.src = item.image;
-        foodImg.alt = `pic of ${item.name}`;
-        foodItem.appendChild(foodText);
-        foodItem.appendChild(foodImg);
-        section.appendChild(foodItem);
-      });
-      document.getElementById('drinks').appendChild(section);
+            foodText.appendChild(foodName);
+            foodText.appendChild(foodDesc);
+            foodText.appendChild(foodprice);
+            foodItem.appendChild(foodText);
+
+            const foodImage = document.createElement('img');
+            foodImage.src = item.image;
+            foodItem.appendChild(foodImage);
+
+            section.appendChild(foodItem);
+        });
+
+        document.getElementById('drinks').appendChild(section);
     };
 
     for (const category in menu) {
-      createMenu(category, menu[category]);
+        createMenu(category, menu[category]);
     }
-
     function scrollToSection(sectionId) {
-      const section = document.getElementById(sectionId);
-      section.scrollIntoView({ behavior: 'smooth' });
+        const section = document.getElementById(sectionId);
+        section.scrollIntoView({ behavior: 'smooth' });
     }
-  </script>
+    const menuContainer = document.querySelector('.menu-container');
+    const menuContent = document.getElementById('menu-content');
+
+    menuContainer.addEventListener('mouseenter', () => {
+        menuContent.style.visibility = 'visible';
+        menuContent.style.opacity = '1';
+        menuContent.style.maxHeight = '200px'; 
+    });
+
+    menuContainer.addEventListener('mouseleave', () => {
+        menuContent.style.opacity = '0'; 
+        setTimeout(() => {
+            menuContent.style.visibility = 'hidden'; 
+            menuContent.style.maxHeight = '0'; 
+        }, 300); 
+    });
+</script>
+
 </body>
 </html>
