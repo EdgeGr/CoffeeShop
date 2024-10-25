@@ -3,11 +3,11 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-<title>Order</title>
     <style>
 	html{
 	  scroll-padding-top: 100px;
 	}
+	
     body {
       background-color: #FED8B1;
       margin: 0;
@@ -87,14 +87,18 @@
       margin-bottom: 30px;
     }
 
-    #menu-content{
-      display: none;
-	  position: absolute;
-	  background-color: #f9f9f9;
-	  min-width: 160px; 
-	  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	  z-index: 1;
-	}
+    #menu-content {
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      opacity: 0; 
+      visibility: hidden; 
+      max-height: 0; 
+      overflow: hidden; 
+      transition: opacity 0.3s ease, max-height 0.3s ease; 
+    }
 	
 	#menu-content a{
       color: black;
@@ -107,9 +111,11 @@
 	  display:block;
 	}
 	
-    .menu-container:hover #menu-content{
-	  display: block;
-	}
+    .menu-container:hover #menu-content {
+      visibility: visible; 
+      max-height: 200px; 
+      opacity: 1; 
+    }
 	
     .menu-container {
       position: relative;
@@ -380,8 +386,22 @@
    const section = document.getElementById(sectionId);
    section.scrollIntoView({ behavior: 'smooth' });
  }
+ const menuContainer = document.querySelector('.menu-container');
+ const menuContent = document.getElementById('menu-content');
+ menuContainer.addEventListener('mouseenter', () => {
+    menuContent.style.visibility = 'visible';  
+    menuContent.style.opacity = '1';           
+    menuContent.style.maxHeight = '200px';     
+ });
 
-    </script>
+ menuContainer.addEventListener('mouseleave', () => {
+    menuContent.style.opacity = '0';            
+    setTimeout(() => {
+        menuContent.style.visibility = 'hidden';
+        menuContent.style.maxHeight = '0';    
+    }, 300); 
+});
+</script>
 
 </body>
 </html>
